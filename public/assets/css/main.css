@@ -299,6 +299,9 @@ input {
   margin-bottom: 30px;
   border-bottom: 2px solid #ccc;
 }
+.slct-has-error {
+  border-bottom: 2px solid red !important;
+}
 
 .input-icon {
   position: absolute;

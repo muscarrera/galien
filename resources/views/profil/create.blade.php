@@ -7,18 +7,31 @@
                 <div class="card-heading"></div>
                 <div class="card-body">
                     <h2 class="title">PRE-INSCRIPTION</h2>
+                        @if (count($errors))
+                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                               <ul>
+                                @foreach ($errors->all() as $error)
+                                  <li> {{ $error }}</li>  
+                                @endforeach
+                                </ul>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>    
+                     @endif
+
                     <form action="{{ url('profils') }}"   method="POST">
 
                     {{ csrf_field() }}
 
                     <div class="row row-space">
                             <div class="slct-col-2">
-                                <div class="slct-input-group">
-                                <input class="input--style-1" type="text" placeholder="CIN" name="cin">
+                                <div class="slct-input-group @if($errors->get('cin'))  slct-has-error  @endif">
+                                <input class="input--style-1 " type="text" placeholder="CIN" name="cin" value="{{ old('cin') }}">
                                 </div>
                             </div>
                             <div class="slct-col-2">
-                                <div class="slct-input-group">
+                                <div class="slct-input-group  @if($errors->get('sexe'))  slct-has-error  @endif">
                                     <div class="rs-select2 js-select-simple select--no-search">
                                         <select name="sexe">
                                             <option disabled="disabled" selected="selected">Sexe</option>
@@ -33,43 +46,43 @@
 
                         <div class="row row-space">
                             <div class="slct-col-2">
-                                <div class="slct-input-group">
-                                <input class="input--style-1" type="text" placeholder="Prénom" name="prenom">
+                                <div class="slct-input-group  @if($errors->get('sexe'))  slct-has-error  @endif">
+                                <input class="input--style-1" type="text" placeholder="Prénom" name="prenom" value="{{ old('prenom') }}">
                                 </div>
                             </div>
                             <div class="slct-col-2">
-                                <div class="slct-input-group">
-                                <input class="input--style-1" type="text" placeholder="Nom" name="nom">
+                                <div class="slct-input-group @if($errors->get('nom'))  slct-has-error  @endif">
+                                <input class="input--style-1" type="text" placeholder="Nom" name="nom" value="{{ old('nom') }}">
                                 </div>
                             </div>
                         </div>
 
-                        <div class="slct-input-group">
-                            <input class="input--style-1" type="text" placeholder="Adresse" name="adresse">
+                        <div class="slct-input-group @if($errors->get('adresse'))  slct-has-error  @endif">
+                            <input class="input--style-1" type="text" placeholder="Adresse" name="adresse" value="{{ old('adresse') }}">
                         </div>
 
                         <div class="row row-space">
                             <div class="slct-col-2">
-                                <div class="slct-input-group">
-                                <input class="input--style-1" type="text" placeholder="Tél" name="tel">
+                                <div class="slct-input-group @if($errors->get('tel'))  slct-has-error  @endif">
+                                <input class="input--style-1" type="text" placeholder="Tél" name="tel" value="{{ old('tel') }}">
                                  </div>
                             </div>
                             <div class="slct-col-2">
-                                <div class="slct-input-group">
-                                <input class="input--style-1" type="text" placeholder="Email" name="email">
+                                <div class="slct-input-group @if($errors->get('email'))  slct-has-error  @endif">
+                                <input class="input--style-1" type="text" placeholder="Email" name="email" value="{{ old('email') }}">
                                 </div>
                             </div>
                         </div>
 
                         <div class="row row-space">
                             <div class="slct-col-2">
-                                <div class="slct-input-group">
-                                    <input class="input--style-1 js-datepicker" type="text" placeholder="Date de Naissance" name="birthday">
+                                <div class="slct-input-group @if($errors->get('birthday'))  slct-has-error  @endif">
+                                    <input class="input--style-1 js-datepicker" type="text" placeholder="Date de Naissance" name="birthday" value="{{ old('birthday') }}">
                                     <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
                                 </div>
                             </div>
                             <div class="slct-col-2">
-                                <div class="slct-input-group">
+                                <div class="slct-input-group @if($errors->get('lieu'))  slct-has-error  @endif">
                                     <div class="rs-select2 js-select-simple select--no-search">
                                         <select name="lieu">
                                             <option disabled="disabled" selected="selected">Lieu</option>
@@ -88,7 +101,7 @@
                                             <option>Ait Melloul</option>
                                             <option>Quelia</option>
 
-                                            <option disabled="disabled" selected="selected">Hors Agadir</option>
+                                            <option disabled="disabled">Hors Agadir</option>
                                             <option>Chtouka ait baha</option>
                                             <option>Tiznit</option>
                                             <option>Guelmim</option>
@@ -105,7 +118,7 @@
 
                         <div class="row row-space">
                             <div class="slct-col-2">
-                            <div class="slct-input-group">
+                            <div class="slct-input-group @if($errors->get('etat'))  slct-has-error  @endif">
                                     <div class="rs-select2 js-select-simple select--no-search">
                                     <select name="etat">
                                             <option disabled="disabled" selected="selected">Etat matrimonial</option>
@@ -119,7 +132,7 @@
                                 </div>
                             </div>
                             <div class="slct-col-2">
-                                <div class="slct-input-group">
+                                <div class="slct-input-group @if($errors->get('etude'))  slct-has-error  @endif">
                                     <div class="rs-select2 js-select-simple select--no-search">
                                     <select id="etude" name="etude" onchange="etudeSelect_function()">
                                             <option disabled="disabled" selected="selected">Niveau d'Etude</option>
@@ -141,18 +154,18 @@
 
                         <div class="row row-space">
                         <div class="slct-col-2">
-                        <div class="slct-input-group">
-                                <input class="input--style-1" type="text" placeholder="Dernier Etablissement" name="etudeEtablissement">
+                        <div class="slct-input-group @if($errors->get('etudeEtablissement'))  slct-has-error  @endif">
+                                <input class="input--style-1" type="text" placeholder="Dernier Etablissement" name="etudeEtablissement" value="{{ old('etudeEtablissement') }}">
                                  </div>
                             </div>
                             <div class="slct-col-4">
-                                <div class="slct-input-group">
-                                <input class="input--style-1" type="text" placeholder="Année" name="etudeAnnee">
+                                <div class="slct-input-group @if($errors->get('etudeAnnee'))  slct-has-error  @endif">
+                                <input class="input--style-1" type="text" placeholder="Année" name="etudeAnnee" value="{{ old('etudeAnnee') }}">
                                  </div>
                             </div>
                             <div class="slct-col-4">
-                                <div class="slct-input-group">
-                                <input class="input--style-1" type="text" placeholder="Lieu" name="etudeLieu">
+                                <div class="slct-input-group @if($errors->get('etudeLieu'))  slct-has-error  @endif">
+                                <input class="input--style-1" type="text" placeholder="Lieu" name="etudeLieu"  value="{{ old('etudeLieu') }}">
                                  </div>
                             </div>
                         </div>
@@ -161,7 +174,7 @@
 
                         <div class="row row-space">
                             <div class="slct-col-2">
-                            <div class="slct-input-group">
+                            <div class="slct-input-group @if($errors->get('choix_1'))  slct-has-error  @endif">
                                     <div class="rs-select2 js-select-simple select--no-search">
                                     <select id="choix_1" name="choix_1"><option disabled='disabled' selected='selected'>1er Choix</option></select>
                                         <div class="select-dropdown"></div>
@@ -169,7 +182,7 @@
                                 </div>
                             </div>
                             <div class="slct-col-2">
-                                <div class="slct-input-group">
+                                <div class="slct-input-group @if($errors->get('choix_2'))  slct-has-error  @endif">
                                     <div class="rs-select2 js-select-simple select--no-search">
                                     <select id="choix_2" name="choix_2"><option disabled='disabled' selected='selected'>2eme Choix</option></select>
                                         <div class="select-dropdown"></div>
@@ -183,17 +196,17 @@
                         <div class="row row-space">
                         <div class="slct-col-2">
                         <div class="slct-input-group">
-                                <input class="input--style-1" type="text" placeholder="Nom du père" name="pereNom">
+                                <input class="input--style-1" type="text" placeholder="Nom du père" name="pereNom" value="{{ old('pereNom') }}">
                                  </div>
                             </div>
                             <div class="slct-col-4">
                                 <div class="slct-input-group">
-                                <input class="input--style-1" type="text" placeholder="Tél" name="pereTel">
+                                <input class="input--style-1" type="text" placeholder="Tél" name="pereTel"  value="{{ old('pereTel') }}">
                                  </div>
                             </div>
                             <div class="slct-col-4">
                                 <div class="slct-input-group">
-                                <input class="input--style-1" type="text" placeholder="Profession" name="pereProfession">
+                                <input class="input--style-1" type="text" placeholder="Profession" name="pereProfession"  value="{{ old('pereProfession') }}">
                                  </div>
                             </div>
                         </div>
@@ -203,17 +216,17 @@
                         <div class="row row-space">
                         <div class="slct-col-2">
                         <div class="slct-input-group">
-                                <input class="input--style-1" type="text" placeholder="Nom de la mère" name="mereNom">
+                                <input class="input--style-1" type="text" placeholder="Nom de la mère" name="mereNom"  value="{{ old('mereNom') }}">
                                 </div>
                             </div>
                             <div class="slct-col-4">
                                 <div class="slct-input-group">
-                                <input class="input--style-1" type="text" placeholder="Tél" name="mereTel">
+                                <input class="input--style-1" type="text" placeholder="Tél" name="mereTel"  value="{{ old('mereTel') }}">
                                 </div>
                             </div>
                             <div class="slct-col-4">
                                 <div class="slct-input-group">
-                                <input class="input--style-1" type="text" placeholder="Profession" name="mereProfession">
+                                <input class="input--style-1" type="text" placeholder="Profession" name="mereProfession"  value="{{ old('mereProfession') }}">
                                 </div>
                             </div>
                         </div>
@@ -222,20 +235,50 @@
                         <div class="row row-space">
                         <div class="slct-col-2">
                         <div class="slct-input-group">
-                                <input class="input--style-1" type="text" placeholder="Nom du tuteur" name="tuteurNom">
+                                <input class="input--style-1" type="text" placeholder="Nom du tuteur" name="tuteurNom"  value="{{ old('tuteurNom') }}">
                                 </div>
                             </div>
                             <div class="slct-col-4">
                                 <div class="slct-input-group">
-                                <input class="input--style-1" type="text" placeholder="Tél" name="tuteurTel">
+                                <input class="input--style-1" type="text" placeholder="Tél" name="tuteurTel"  value="{{ old('tuteurTel') }}">
                                 </div>
                             </div>
                             <div class="slct-col-4">
                                 <div class="slct-input-group">
-                                <input class="input--style-1" type="text" placeholder="Profession" name="tuteurProfession">
+                                <input class="input--style-1" type="text" placeholder="Profession" name="tuteurProfession"  value="{{ old('tuteurProfession') }}">
                                 </div>
                             </div>
                         </div>
+                        <div class="row row-space">
+                            <div class="slct-col-2">
+                                <div class="slct-input-group">
+                                       <p>Vous Parents ont-ils une assurance maladie:</p>    </div>
+                                    </div>
+                            <div class="slct-col-2">
+                            <div class="slct-input-group @if($errors->get('parentAssurance'))  slct-has-error  @endif">
+                                    <div class="rs-select2 js-select-simple select--no-search">
+                                    <select name="parentAssurance">
+                                            <option disabled="disabled" selected="selected">Assurance (Parents)</option>
+                                            <option>Aucun</option>
+                                            <option>CNSS</option>
+                                            <option>CNOPS</option>
+                                            <option>RAMED</option>
+                                            <option>Autre</option>
+                                            </select>
+                                        <div class="select-dropdown"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            
+                        </div>
+
+
+
+
+
+
+
 
                         <div class="slct-input-group">
 

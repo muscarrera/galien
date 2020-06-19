@@ -162,14 +162,14 @@
                         <div class="row row-space">
                             <div class="slct-col-2">
                             <div class="slct-input-group">
-                                  <input class="input--style-1" type="text" placeholder="1er choix" name="choix_1" disabled value="{{ $prf->choix1 }}">
-                                  <i class="zmdi zmdi-calendar-note input-icon"></i>
-                                </div>
+                                <input class="input--style-1" type="text" disabled placeholder="1er choix" name="choix_1" value="{{ $prf->choix1 }}">
+                                <i class="zmdi zmdi-edit input-icon js-btn-choix1 "></i>   
+                            </div>
                             </div>
                             <div class="slct-col-2">
                                 <div class="slct-input-group">
-                                    <input class="input--style-1" type="text" placeholder="2e choix" name="choix_2" disabled value="{{ $prf->choix2 }}">
-                                    <i class="zmdi zmdi-calendar-note"></i>
+                                    <input class="input--style-1" type="text" disabled placeholder="2é choix" name="choix_2" value="{{ $prf->choix2 }}">
+                                    <i class="zmdi zmdi-edit input-icon  "></i>
                                 </div>
                             </div>
                         </div>

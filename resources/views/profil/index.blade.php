@@ -6,7 +6,15 @@
 <div class="row">
 <div class="col-md-12">
 
+    <p></p>
 <h2> La Listes de Profiles Pré-Incription</h2>
+
+@if(Session::has('success'))
+<div class="alert alert-success" role="alert">
+   {{  Session::get('success')  }}
+  </div>
+  @endif
+
 <div class="pull-right">
 <a href="{{ url('profils/create') }}" class="btn btn-success mb-1"><i class="zmdi zmdi-account-add"> Nouveau</i></a>
 </div>

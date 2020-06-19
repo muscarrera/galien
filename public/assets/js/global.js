@@ -66,7 +66,6 @@
         console.log(err);
     }
 
-
 })(jQuery);
 
 function etudeSelect_function()
