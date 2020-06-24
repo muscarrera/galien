@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Support\Facades\Auth;
+ 
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,6 +25,11 @@ Route::get('profils/{id}/edit','ProfilController@edit');
 Route::put('profils/{id}','ProfilController@update');
 Route::delete('profils/{id}','ProfilController@destroy');
 
+Route::get('pre-insc/print/{id}/pdf/{dt}', 'ProfilController@savepdf');
+Route::get('send-mail/{id}','ProfilController@mailsend');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/panel', 'PanelController@index');

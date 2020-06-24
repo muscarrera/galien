@@ -7,6 +7,9 @@ use App\Profil;
 use App\User;
 use App\Http\Requests\profilReques;
 use Illuminate\Support\Facades\Hash;
+use App;
+use PDF;
+use \App\Mail\SendMail;
 
 class ProfilController extends Controller
 {
@@ -28,7 +31,7 @@ class ProfilController extends Controller
 
       $user = new User();
       $user->name =$request->input('cin');
-      $user->password =Hash::make($request->input('cin')]);
+      $user->password = Hash::make($request->input('cin'));
       $user->email =$request->input('email');
       $user->role = 0;
 
@@ -119,8 +122,51 @@ class ProfilController extends Controller
         $prf = Profil::find($id);
         $this->authorize('delete', $prf);
 
+        $us = User::find($prf->user_id);
+        $us->delete();
         $prf->delete();
         return redirect('profils');
     }
+
+        //pdf 
+        public function savepdf($id,$dt) {
+          //$pdf = PDF::loadView('profil.create');
+          //:return $pdf->download('invoice.pdf');
+
+            //  $pdf = App::make('dompdf.wrapper');
+            //   $pdf->loadHTML('<h1>Test</h1>');
+            //   return $pdf->stream();
+
+            $prf = Profil::find($id);
+
+           // return view('profil.pdf',['prf'=>$prf]);
+
+           $pdf = PDF::loadView('profil.pdf',['prf'=>$prf]);
+          return $pdf->download('invoice.pdf');
+        }
+
+        public function mailsend($id)
+        {
+          $prf = Profil::find($id);
+
+            $details = [
+                'title' => 'Bulletin de preinscription',
+                'body' => 'votre inscription online a bien été prise en compte, merci de bien vouloir télécharger et imprimer notre bulletin de preinscription' .
+                          'http://127.0.0.1:8000/pre-inc/print/'. $prf->id .'/pdf/' . now()->timestamp
+            ];
+    
+            \Mail::to('muscarrera@gmail.com')->send(new SendMail($details));
+    
+            //printpdf($prf);
+            
+            return view('emails.thanks');
+          }
+          
+          public function printpdf($prf) 
+          {
+              $pdf = PDF::loadView('profil.pdf',['prf'=>$prf]);
+              return $pdf->download('invoice.pdf');
+          }
+    
 
 }
