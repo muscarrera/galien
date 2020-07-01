@@ -77,7 +77,7 @@
 	data() {
 		return {
 			// Our data object that holds the Laravel paginator data
-			laravelData: {},
+			profils: {},
 		}
 	},
 
@@ -91,7 +91,7 @@
 		getResults(page = 1) {
 			axios.get('http://127.0.0.1:8000/profils/getactive?page=' + page)
 				.then(response => {
-					this.laravelData = response.data;
+					this.profils = response.data;
 				});
 		}
 	}

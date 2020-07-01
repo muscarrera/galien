@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Profil;
 use Illuminate\Http\Request;
 
 class PanelController extends Controller
@@ -16,6 +16,14 @@ class PanelController extends Controller
         return view('panel.index');
     }
 
+     //get all api
+     public function getactive() {
+        // $profils =Profil::all();
+         
+        $profils = Profil::paginate(3);
+        return  $profils;
+ 
+     }
     /**
      * Show the form for creating a new resource.
      *

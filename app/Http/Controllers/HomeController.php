@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Profil;
 
 class HomeController extends Controller
 {
@@ -25,4 +26,13 @@ class HomeController extends Controller
     {
         return view('home');
     }
+
+        //get all api
+        public function getactive() {
+            // $profils =Profil::all();
+             
+            $profils = Profil::paginate(3);
+            return  $profils;
+     
+         }
 }

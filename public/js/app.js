@@ -2023,7 +2023,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       // Our data object that holds the Laravel paginator data
-      laravelData: {}
+      profils: {}
     };
   },
   mounted: function mounted() {
@@ -2037,7 +2037,7 @@ __webpack_require__.r(__webpack_exports__);
 
       var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
       axios.get('http://127.0.0.1:8000/profils/getactive?page=' + page).then(function (response) {
-        _this.laravelData = response.data;
+        _this.profils = response.data;
       });
     }
   }

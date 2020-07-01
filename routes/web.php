@@ -19,7 +19,7 @@ Route::get('/', function () {
 });
 
 Route::get('profils','ProfilController@index');
-Route::get('/profils/getactive','ProfilController@getactive');
+//Route::get('/profils/getactive','ProfilController@getactive');
 Route::get('profils/create','ProfilController@create');
 Route::post('profils','ProfilController@store');
 Route::get('profils/{id}/edit','ProfilController@edit');
@@ -34,3 +34,4 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/panel/{any}', 'PanelController@index')->where('any', '.*');
+Route::get('/profils/getactive','PanelController@getactive');
