@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use App;
 use PDF;
 use \App\Mail\SendMail;
+use App\Http\Resources\UserCollection;
 
 class ProfilController extends Controller
 {
@@ -19,6 +20,15 @@ class ProfilController extends Controller
         $this->authorize('view',Profil::class);
 
         return view('profil.index', ['profils'=> $profils]);
+
+    }
+
+       //get all api
+       public function getactive() {
+       // $profils =Profil::all();
+        
+       $profils = App\Profil::paginate(3);
+       return  $profils;
 
     }
     //show add forme

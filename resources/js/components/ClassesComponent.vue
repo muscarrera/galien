@@ -1,12 +1,12 @@
 <template>
-    <div class="container">
+    <div class="container text-center pt-2">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">Example Component</div>
+                    <div class="card-header"> ClassesComponent</div>
 
                     <div class="card-body">
-                        I'm an example component.
+                       {{ test }}
                     </div>
                 </div>
             </div>
@@ -16,8 +16,13 @@
 
 <script>
     export default {
-        mounted() {
-            console.log('Component mounted.')
+         data: function () {
+        return {
+        test: 'name carrera'
+        }
+        },       
+       mounted() {
+        console.log('Component mounted.')
         }
     }
 </script>
